@@ -1,0 +1,949 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="vis.js"></script>
+    <link href="vis.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+</head>
+<body>
+  <div id="mynetwork"></div>
+  <div class="ui-widget">
+  <input id="tags">
+</div>
+  <div id="cbxs"></div>
+
+<script type="text/javascript">
+
+
+    // create an array with nodes
+    var nodes = [
+{"group": "entity", "id": 78, "label": "DatabaseEntity"},
+{"group": "assoc", "id": 151, "label": "FileHostAssoc"},
+{"group": "entity", "id": 325, "label": "UserHardPigeonEntity"},
+{"group": "assoc", "id": 352, "label": "UserUserEngagementAssoc"},
+{"group": "entity", "id": 344, "label": "UserStagedPaymentEntity"},
+{"group": "entity", "id": 210, "label": "NamespaceIdEntity"},
+{"group": "assoc", "id": 295, "label": "TeamUserJoinRequestAssoc"},
+{"group": "assoc", "id": 65, "label": "CollectionItemAssoc"},
+{"group": "entity", "id": 197, "label": "LocalContactsCacheHubEntity"},
+{"group": "assoc", "id": 119, "label": "EngagementProgressAssoc"},
+{"group": "entity", "id": 180, "label": "HostFilePresenceEntity"},
+{"group": "entity", "id": 129, "label": "ExampleSimpleApplicationEntity"},
+{"group": "assoc", "id": 306, "label": "UserApiAppHostAssoc"},
+{"group": "assoc", "id": 249, "label": "ProvisioningApiAppTeamAssoc"},
+{"group": "assoc", "id": 81, "label": "DelayedAsyncTaskAssoc"},
+{"group": "assoc", "id": 86, "label": "DeviceFeatureAssoc"},
+{"group": "assoc", "id": 340, "label": "UserSelSyncRestoreAssoc"},
+{"group": "assoc", "id": 198, "label": "LocalizableImageAssoc"},
+{"group": "assoc", "id": 322, "label": "UserFeatureAssoc"},
+{"group": "entity", "id": 49, "label": "CDictPlatformEntity"},
+{"group": "assoc", "id": 281, "label": "TeamEmailAddressInviteRequestAssoc"},
+{"group": "assoc", "id": 272, "label": "StreamEmailNamespaceAssoc"},
+{"group": "entity", "id": 156, "label": "GlobalLockEntity"},
+{"group": "entity", "id": 139, "label": "FJCheckerReduceEntity"},
+{"group": "assoc", "id": 31, "label": "BMNodeTrackAssoc"},
+{"group": "entity", "id": 309, "label": "UserCameraUploadStateRequestEntity"},
+{"group": "assoc", "id": 329, "label": "UserOAuth2AuthCodeAssoc"},
+{"group": "entity", "id": 104, "label": "EdgestoreHealthTestEntity"},
+{"group": "entity", "id": 43, "label": "BlacklistedPasswordEntity"},
+{"group": "entity", "id": 76, "label": "CursorTypeEntity"},
+{"group": "assoc", "id": 283, "label": "TeamEventAssoc"},
+{"group": "assoc", "id": 3, "label": "ActivityEmailQueueCommentAssoc"},
+{"group": "entity", "id": 225, "label": "NotificationEntity"},
+{"group": "entity", "id": 4, "label": "ActivityEmailQueueEntity"},
+{"group": "entity", "id": 45, "label": "BoltChannelEntity"},
+{"group": "assoc", "id": 299, "label": "TwofactorU2fDeviceAssoc"},
+{"group": "assoc", "id": 11, "label": "ApiAppConsoleTokenAssoc"},
+{"group": "entity", "id": 91, "label": "DoormanEntity"},
+{"group": "entity", "id": 109, "label": "EmailEntity"},
+{"group": "assoc", "id": 148, "label": "FileCollectorUploadEventAssoc"},
+{"group": "entity", "id": 177, "label": "HostEntity"},
+{"group": "entity", "id": 107, "label": "EmailAddressEntity"},
+{"group": "assoc", "id": 314, "label": "UserDatabaseAssoc"},
+{"group": "assoc", "id": 28, "label": "BMMetaTrackAssoc"},
+{"group": "entity", "id": 266, "label": "SharedContentLinkEntity"},
+{"group": "entity", "id": 361, "label": "WebsiteFolderEntity"},
+{"group": "entity", "id": 319, "label": "UserEngagementEntity"},
+{"group": "entity", "id": 301, "label": "UnuploadedSharedLinkEntity"},
+{"group": "entity", "id": 261, "label": "RowDummy"},
+{"group": "assoc", "id": 14, "label": "ApiAppLinkAssoc"},
+{"group": "entity", "id": 30, "label": "BMNodeEntity"},
+{"group": "entity", "id": 71, "label": "ContactsEmailHashesEntity"},
+{"group": "assoc", "id": 26, "label": "BMEmailNodeAssoc"},
+{"group": "entity", "id": 56, "label": "CashIDEALPurchaseInfoEntity"},
+{"group": "assoc", "id": 136, "label": "FJCheckerJobScanAssoc"},
+{"group": "assoc", "id": 24, "label": "AutoLoginNonceAssoc"},
+{"group": "assoc", "id": 48, "label": "CDictEntryAssoc"},
+{"group": "assoc", "id": 169, "label": "HelpArticleVersionL10nAssoc"},
+{"group": "assoc", "id": 336, "label": "UserProfileServicesProfileAssoc"},
+{"group": "entity", "id": 88, "label": "DomainEntity"},
+{"group": "assoc", "id": 346, "label": "UserSubscriptionAssoc"},
+{"group": "entity", "id": 343, "label": "UserStagedPairingEntity"},
+{"group": "entity", "id": 182, "label": "HostUnlinkEntity"},
+{"group": "assoc", "id": 15, "label": "ApiAppResellerAssoc"},
+{"group": "entity", "id": 150, "label": "FileEntity"},
+{"group": "entity", "id": 224, "label": "NoceEntity"},
+{"group": "assoc", "id": 285, "label": "TeamGroupAssoc"},
+{"group": "entity", "id": 213, "label": "NamespacePostEntity"},
+{"group": "assoc", "id": 279, "label": "TeamDomainDiscoveryAssoc"},
+{"group": "entity", "id": 163, "label": "HedwigApplicationHandlerEntity"},
+{"group": "entity", "id": 245, "label": "PhotosReengagementEntity"},
+{"group": "entity", "id": 297, "label": "TexterVendorSplitEntity"},
+{"group": "entity", "id": 255, "label": "RequestOrderingRecordEntity"},
+{"group": "assoc", "id": 73, "label": "CounterSubcountAssoc"},
+{"group": "assoc", "id": 116, "label": "EmailSendRequestAssoc"},
+{"group": "assoc", "id": 20, "label": "AuthIpEmailAssoc"},
+{"group": "assoc", "id": 339, "label": "UserRecentFileAssoc"},
+{"group": "assoc", "id": 258, "label": "ResourceGroupAssoc"},
+{"group": "entity", "id": 193, "label": "LastActivityTrackerEntity"},
+{"group": "assoc", "id": 290, "label": "TeamResellerChainAssoc"},
+{"group": "assoc", "id": 305, "label": "UserAliasAssoc"},
+{"group": "entity", "id": 134, "label": "FJCheckerJobEntity"},
+{"group": "entity", "id": 23, "label": "AuthSessionIdEntity"},
+{"group": "entity", "id": 58, "label": "ChunkedUploadInefficientEntity"},
+{"group": "assoc", "id": 219, "label": "NamespaceSelSyncHiddenNamespaceAssoc"},
+{"group": "assoc", "id": 117, "label": "EmailShareAssoc"},
+{"group": "entity", "id": 13, "label": "ApiAppHostEntity"},
+{"group": "assoc", "id": 330, "label": "UserOneOnOneChatUserAssoc"},
+{"group": "entity", "id": 57, "label": "CashIDEALUpdateBillingDetailsInfoEntity"},
+{"group": "assoc", "id": 135, "label": "FJCheckerJobReduceAssoc"},
+{"group": "assoc", "id": 207, "label": "NamespaceCursorAssoc"},
+{"group": "entity", "id": 229, "label": "OAuth2AccessTokenEntity"},
+{"group": "entity", "id": 50, "label": "CRTBlocklistVerdict"},
+{"group": "entity", "id": 251, "label": "PublicAppFolderEntity"},
+{"group": "assoc", "id": 308, "label": "UserBlacklistedPasswordAssoc"},
+{"group": "assoc", "id": 287, "label": "TeamOAuth2AuthCodeAssoc"},
+{"group": "assoc", "id": 188, "label": "InvitationTokenCollectionAssoc"},
+{"group": "assoc", "id": 278, "label": "TeamDomainAssoc"},
+{"group": "entity", "id": 59, "label": "ClearbitCompanyDataEntity"},
+{"group": "assoc", "id": 296, "label": "TeamUserRoleAssoc"},
+{"group": "entity", "id": 74, "label": "CrashdashConfigEntity"},
+{"group": "assoc", "id": 237, "label": "OrgUserAssoc"},
+{"group": "entity", "id": 172, "label": "HelpKeywordTreeEntity"},
+{"group": "entity", "id": 147, "label": "FileCollectorHasNewUploadEventsEntity"},
+{"group": "assoc", "id": 302, "label": "UploadSessionBlockAssoc"},
+{"group": "assoc", "id": 22, "label": "AuthSessionIdEmailAssoc"},
+{"group": "entity", "id": 241, "label": "PDNJobEntity"},
+{"group": "assoc", "id": 42, "label": "BMTrackNodeAssoc"},
+{"group": "entity", "id": 154, "label": "FixSfUnshareAfterUnmountEntity"},
+{"group": "entity", "id": 125, "label": "EventbusServerEntity"},
+{"group": "assoc", "id": 140, "label": "FJCheckerReduceJobAssoc"},
+{"group": "assoc", "id": 240, "label": "OwnerOAuth2AccessTokenAssoc"},
+{"group": "entity", "id": 248, "label": "ProfileServicesIdEntity"},
+{"group": "entity", "id": 99, "label": "EStageUserEntity2"},
+{"group": "entity", "id": 96, "label": "EStageMetroToColos"},
+{"group": "assoc", "id": 102, "label": "EdgestoreEventsInErrorAssoc"},
+{"group": "assoc", "id": 353, "label": "UserVerifiedDomainAssoc"},
+{"group": "entity", "id": 189, "label": "InvitationTokenEntity"},
+{"group": "assoc", "id": 167, "label": "HelpArticleVersionAssoc"},
+{"group": "entity", "id": 244, "label": "PhotosPingEntity"},
+{"group": "assoc", "id": 222, "label": "NamespaceUserCopyOutAssoc"},
+{"group": "assoc", "id": 356, "label": "UserWorkspaceSettingsAssoc"},
+{"group": "assoc", "id": 323, "label": "UserFileCollectorAssoc"},
+{"group": "entity", "id": 264, "label": "ServerContactsCacheEntity"},
+{"group": "entity", "id": 164, "label": "HedwigApplicationTokenEntity"},
+{"group": "assoc", "id": 1, "label": "ActivityAssocicatedActivityAssoc"},
+{"group": "entity", "id": 277, "label": "TeamAssumeUserTokenEntity"},
+{"group": "assoc", "id": 37, "label": "BMSchedulerJobRunUserAssoc"},
+{"group": "entity", "id": 234, "label": "OrgDomainEntity"},
+{"group": "assoc", "id": 186, "label": "IdentityHelpCenterFeedbackAssoc"},
+{"group": "assoc", "id": 257, "label": "ResellerTeamOwnershipAssoc"},
+{"group": "entity", "id": 214, "label": "NamespaceRelatedEventEntity"},
+{"group": "entity", "id": 60, "label": "ClientRequestedAsyncTaskHubEntity"},
+{"group": "entity", "id": 93, "label": "DropdownEntity"},
+{"group": "entity", "id": 192, "label": "ItemEntity"},
+{"group": "entity", "id": 174, "label": "HelpVariantEntity"},
+{"group": "entity", "id": 38, "label": "BMSchedulerUserEntity"},
+{"group": "entity", "id": 269, "label": "StormcrowDeviceEntity"},
+{"group": "assoc", "id": 159, "label": "GroupTeamAssoc"},
+{"group": "assoc", "id": 307, "label": "UserAsyncTaskStatusAssoc"},
+{"group": "entity", "id": 6, "label": "ActivityExternalTypeAndIdEntity"},
+{"group": "entity", "id": 168, "label": "HelpArticleVersionEntity"},
+{"group": "entity", "id": 47, "label": "BoltHarmonyQueueEntity"},
+{"group": "assoc", "id": 215, "label": "NamespaceSelSyncChangesetAssoc"},
+{"group": "entity", "id": 357, "label": "VerifiedDomainEntity"},
+{"group": "entity", "id": 212, "label": "NamespaceNeedInheritanceUpdateEntity"},
+{"group": "entity", "id": 21, "label": "AuthIpEntity"},
+{"group": "entity", "id": 115, "label": "EmailRevisionEntity"},
+{"group": "assoc", "id": 137, "label": "FJCheckerJobTypeAssoc"},
+{"group": "entity", "id": 262, "label": "SFJRevisionEntity"},
+{"group": "assoc", "id": 348, "label": "UserTeamRoleAssoc"},
+{"group": "assoc", "id": 205, "label": "NamespaceAccessRequestAssoc"},
+{"group": "assoc", "id": 284, "label": "TeamFeatureAssoc"},
+{"group": "assoc", "id": 29, "label": "BMMetaTrackEntityAssoc"},
+{"group": "entity", "id": 303, "label": "UploadSessionEntity"},
+{"group": "assoc", "id": 32, "label": "BMNodeTransitionAssoc"},
+{"group": "assoc", "id": 160, "label": "GroupUserAssoc"},
+{"group": "entity", "id": 274, "label": "SubcountEntity"},
+{"group": "assoc", "id": 334, "label": "UserProfileServicesAssoc"},
+{"group": "entity", "id": 118, "label": "EmailTrackingEntity"},
+{"group": "entity", "id": 41, "label": "BMTrackEntity"},
+{"group": "entity", "id": 141, "label": "FJCheckerScanEntity"},
+{"group": "assoc", "id": 221, "label": "NamespaceToRelatedEventAssoc"},
+{"group": "entity", "id": 366, "label": "WopiUserFileColoEntity"},
+{"group": "entity", "id": 162, "label": "GrowthExperimentsEntity"},
+{"group": "entity", "id": 108, "label": "EmailContentEntity"},
+{"group": "assoc", "id": 333, "label": "UserPhotosPingAssoc"},
+{"group": "assoc", "id": 161, "label": "GroupUserJoinRequestAssoc"},
+{"group": "assoc", "id": 204, "label": "MergedContactIndexAssoc"},
+{"group": "assoc", "id": 321, "label": "UserEventAssoc"},
+{"group": "assoc", "id": 202, "label": "MergedContactAssoc"},
+{"group": "assoc", "id": 46, "label": "BoltChannelPayloadAssoc"},
+{"group": "entity", "id": 55, "label": "CashCursorEntity"},
+{"group": "entity", "id": 19, "label": "AuthEmailEntity"},
+{"group": "assoc", "id": 211, "label": "NamespaceMemberAssoc"},
+{"group": "assoc", "id": 130, "label": "ExampleSimpleDeveloperApplicationAssoc"},
+{"group": "assoc", "id": 331, "label": "UserOrgAssoc"},
+{"group": "entity", "id": 300, "label": "TwofactorU2fDeviceEntity"},
+{"group": "entity", "id": 364, "label": "WopiIdRefColoEntity"},
+{"group": "assoc", "id": 247, "label": "PostItemAssoc"},
+{"group": "entity", "id": 114, "label": "EmailReplyTokenEntity"},
+{"group": "entity", "id": 152, "label": "FileIDEntity"},
+{"group": "entity", "id": 53, "label": "CarouselUserEntity"},
+{"group": "entity", "id": 259, "label": "RichGroupEntity"},
+{"group": "entity", "id": 230, "label": "OAuth2AuthCodeEntity"},
+{"group": "entity", "id": 120, "label": "EphemeralItemEntity"},
+{"group": "assoc", "id": 2, "label": "ActivityCommentAssoc"},
+{"group": "assoc", "id": 39, "label": "BMSchedulerUserJobRunAssoc"},
+{"group": "assoc", "id": 289, "label": "TeamRemovedUserAssoc"},
+{"group": "assoc", "id": 332, "label": "UserOverQuotaSplashDisplayTimeAssoc"},
+{"group": "entity", "id": 271, "label": "StreamEmailEntity"},
+{"group": "entity", "id": 98, "label": "EStageUserEntity"},
+{"group": "assoc", "id": 66, "label": "CollectionPostAssoc"},
+{"group": "entity", "id": 209, "label": "NamespaceEntity"},
+{"group": "entity", "id": 187, "label": "IdentityPrefsEntity"},
+{"group": "assoc", "id": 360, "label": "WebhookURLAssoc"},
+{"group": "assoc", "id": 68, "label": "CollectionUserAssoc"},
+{"group": "entity", "id": 34, "label": "BMSchedulerJobRunDataEntity"},
+{"group": "assoc", "id": 18, "label": "AudienceFeatureAssoc"},
+{"group": "entity", "id": 201, "label": "MergedCollectionEntity"},
+{"group": "assoc", "id": 218, "label": "NamespaceSelSyncFolderSummaryAssoc"},
+{"group": "assoc", "id": 77, "label": "DatabaseDeltaAssoc"},
+{"group": "entity", "id": 122, "label": "EventBlockEntity"},
+{"group": "entity", "id": 238, "label": "OverQuotaSplashDisplayTimeEntity"},
+{"group": "assoc", "id": 223, "label": "NamespaceUserInProgressAssoc"},
+{"group": "assoc", "id": 179, "label": "HostFileAssoc"},
+{"group": "entity", "id": 40, "label": "BMStatusEntity"},
+{"group": "assoc", "id": 64, "label": "CollectionInvitedUserAssoc"},
+{"group": "entity", "id": 70, "label": "CommentMetadataEntity"},
+{"group": "assoc", "id": 242, "label": "ParentNamespaceChildNamespaceAssoc"},
+{"group": "entity", "id": 313, "label": "UserCuRotateCorruptedFilesEntity"},
+{"group": "assoc", "id": 263, "label": "SentGrowthEmailAssoc"},
+{"group": "entity", "id": 138, "label": "FJCheckerJobTypeEntity"},
+{"group": "assoc", "id": 304, "label": "UserActivitySubscriptionAssoc"},
+{"group": "entity", "id": 358, "label": "WalkerCursorEntity"},
+{"group": "entity", "id": 165, "label": "HelpArticleEntity"},
+{"group": "entity", "id": 351, "label": "UserUpsellImpressionEntity"},
+{"group": "entity", "id": 145, "label": "FileCollectorEntity"},
+{"group": "entity", "id": 128, "label": "ExampleDeveloperEntity"},
+{"group": "entity", "id": 227, "label": "OAuth1AccessTokenEntity"},
+{"group": "entity", "id": 275, "label": "SubscriptionEntity"},
+{"group": "assoc", "id": 318, "label": "UserEmailEventAssoc"},
+{"group": "entity", "id": 82, "label": "DeltaDummy"},
+{"group": "assoc", "id": 273, "label": "StringFeatureAssoc"},
+{"group": "entity", "id": 317, "label": "UserEmailEntity"},
+{"group": "assoc", "id": 185, "label": "IdentityFeatureAssoc"},
+{"group": "assoc", "id": 220, "label": "NamespaceToPostAssoc"},
+{"group": "assoc", "id": 280, "label": "TeamDomainInviteToUserAssoc"},
+{"group": "entity", "id": 12, "label": "ApiAppEntity"},
+{"group": "entity", "id": 92, "label": "DropdownCacheEntity"},
+{"group": "assoc", "id": 89, "label": "DomainTeamAssoc"},
+{"group": "assoc", "id": 316, "label": "UserDropdownAssoc"},
+{"group": "entity", "id": 87, "label": "DeviceManagementTeamEntity"},
+{"group": "entity", "id": 260, "label": "RoomProxyEntity"},
+{"group": "entity", "id": 121, "label": "EpochGatingEntity"},
+{"group": "assoc", "id": 158, "label": "GroupResourceAssoc"},
+{"group": "assoc", "id": 35, "label": "BMSchedulerJobRunDataUserIdsAssoc"},
+{"group": "assoc", "id": 16, "label": "AppFeatureAssoc"},
+{"group": "entity", "id": 256, "label": "ResellerEntity"},
+{"group": "entity", "id": 157, "label": "GroupEntity"},
+{"group": "assoc", "id": 335, "label": "UserProfileServicesContactAssoc"},
+{"group": "entity", "id": 110, "label": "EmailEventEntity"},
+{"group": "entity", "id": 268, "label": "StarcatcherUserEntity"},
+{"group": "assoc", "id": 315, "label": "UserDeletionAssoc"},
+{"group": "entity", "id": 144, "label": "FeatureEntity"},
+{"group": "entity", "id": 97, "label": "EStagePhotoEntity"},
+{"group": "assoc", "id": 216, "label": "NamespaceSelSyncDeleteEventAssoc"},
+{"group": "assoc", "id": 127, "label": "ExampleDeveloperApplicationAssoc"},
+{"group": "assoc", "id": 328, "label": "UserNotificationAssoc"},
+{"group": "entity", "id": 203, "label": "MergedContactCacheEntity"},
+{"group": "entity", "id": 270, "label": "StormcrowStringEntity"},
+{"group": "entity", "id": 293, "label": "TeamUsageDirtyEntity"},
+{"group": "entity", "id": 267, "label": "ShmodelToken2Entity"},
+{"group": "assoc", "id": 106, "label": "EmailAddressEmailEventAssoc"},
+{"group": "entity", "id": 149, "label": "FileCollectorUploadGroupUnprocessedEntity"},
+{"group": "entity", "id": 349, "label": "UserUpsellEntity"},
+{"group": "assoc", "id": 292, "label": "TeamUsageDeltaAssoc"},
+{"group": "entity", "id": 250, "label": "ProvisioningPartnerEntity"},
+{"group": "assoc", "id": 124, "label": "EventQueueRegistrationAssoc"},
+{"group": "entity", "id": 36, "label": "BMSchedulerJobRunEntity"},
+{"group": "assoc", "id": 79, "label": "DatabasePartialDeltaAssoc"},
+{"group": "assoc", "id": 94, "label": "ESQueueItemAssoc"},
+{"group": "assoc", "id": 80, "label": "DatabaseRowAssoc"},
+{"group": "assoc", "id": 85, "label": "DevModeApiAppUserLinkAssoc"},
+{"group": "assoc", "id": 142, "label": "FJCheckerScanJobAssoc"},
+{"group": "assoc", "id": 206, "label": "NamespaceAsyncTaskStatusAssoc"},
+{"group": "entity", "id": 228, "label": "OAuth1RequestTokenEntity"},
+{"group": "entity", "id": 291, "label": "TeamUpsellEntity"},
+{"group": "entity", "id": 184, "label": "IdentityEntity"},
+{"group": "assoc", "id": 217, "label": "NamespaceSelSyncExcludedSjidsAssoc"},
+{"group": "entity", "id": 131, "label": "ExampleSimpleDeveloperEntity"},
+{"group": "assoc", "id": 63, "label": "CollectionEventBlockAssoc"},
+{"group": "assoc", "id": 190, "label": "InvitedUserCollectionAssoc"},
+{"group": "entity", "id": 17, "label": "AsyncTaskStatusEntity"},
+{"group": "entity", "id": 113, "label": "EmailMetadataEntity"},
+{"group": "entity", "id": 72, "label": "CounterEntity"},
+{"group": "entity", "id": 83, "label": "DeltaVCursorEntity"},
+{"group": "entity", "id": 54, "label": "CashContextEntity"},
+{"group": "entity", "id": 282, "label": "TeamEntity"},
+{"group": "assoc", "id": 143, "label": "FJCheckerTypeJobAssoc"},
+{"group": "assoc", "id": 236, "label": "OrgNamespaceAssoc"},
+{"group": "entity", "id": 246, "label": "PostEntity"},
+{"group": "entity", "id": 195, "label": "LiveopsPinEntity"},
+{"group": "assoc", "id": 341, "label": "UserSentDomainInviteFromTeamAssoc"},
+{"group": "assoc", "id": 103, "label": "EdgestoreHealthTestAssoc"},
+{"group": "assoc", "id": 8, "label": "ActivityUserSeenStateAssoc"},
+{"group": "assoc", "id": 294, "label": "TeamUserAssoc"},
+{"group": "assoc", "id": 9, "label": "ActivityUserSubscriptionAssoc"},
+{"group": "entity", "id": 10, "label": "AliasEntity"},
+{"group": "assoc", "id": 173, "label": "HelpVariantArticleAssoc"},
+{"group": "entity", "id": 51, "label": "CRTUserEntity"},
+{"group": "entity", "id": 286, "label": "TeamLogoEntity"},
+{"group": "entity", "id": 310, "label": "UserCashStateEntity"},
+{"group": "entity", "id": 200, "label": "LocalizedImageEntity"},
+{"group": "entity", "id": 196, "label": "LocalContactsCacheEntity"},
+{"group": "assoc", "id": 324, "label": "UserGroupAssoc"},
+{"group": "assoc", "id": 276, "label": "SupportUserAsyncTaskStatusAssoc"},
+{"group": "entity", "id": 235, "label": "OrgEntity"},
+{"group": "assoc", "id": 342, "label": "UserShmodel2Assoc"},
+{"group": "assoc", "id": 327, "label": "UserNoceAssoc"},
+{"group": "assoc", "id": 338, "label": "UserReceivedShmodelTokenAssoc"},
+{"group": "assoc", "id": 181, "label": "HostOmahaAssoc"},
+{"group": "entity", "id": 166, "label": "HelpArticleL10nEntity"},
+{"group": "entity", "id": 155, "label": "FixSfUnshareKeepCopyEntity"},
+{"group": "entity", "id": 112, "label": "EmailMessageEntity"},
+{"group": "assoc", "id": 355, "label": "UserWebsiteFolderAssoc"},
+{"group": "assoc", "id": 312, "label": "UserContactSnapshotAssoc"},
+{"group": "entity", "id": 254, "label": "RecentLinksEntity"},
+{"group": "entity", "id": 25, "label": "BMEmailEntity"},
+{"group": "assoc", "id": 337, "label": "UserQuotaExtraAssoc"},
+{"group": "entity", "id": 363, "label": "WopiIdEntity"},
+{"group": "assoc", "id": 84, "label": "DevModeApiAppTeamLinkAssoc"},
+{"group": "entity", "id": 27, "label": "BMMetaEntity"},
+{"group": "entity", "id": 69, "label": "CommentEntity"},
+{"group": "assoc", "id": 111, "label": "EmailMessageEmailEventAssoc"},
+{"group": "entity", "id": 146, "label": "FileCollectorFileUploadGroupEntity"},
+{"group": "assoc", "id": 326, "label": "UserHostAssoc"},
+{"group": "assoc", "id": 233, "label": "OreoEmailAssoc"},
+{"group": "entity", "id": 226, "label": "NsPathEntity"},
+{"group": "assoc", "id": 311, "label": "UserCollectionAssoc"},
+{"group": "entity", "id": 194, "label": "LivefillNamespaceOverrideEntity"},
+{"group": "assoc", "id": 347, "label": "UserSwitchAssoc"},
+{"group": "assoc", "id": 101, "label": "EdgestoreEventsAssoc"},
+{"group": "assoc", "id": 191, "label": "ItemCollectionAssoc"},
+{"group": "entity", "id": 0, "label": "AbuseBlocklistInfoEntity"},
+{"group": "entity", "id": 252, "label": "QueuedHostResyncEntity"},
+{"group": "entity", "id": 33, "label": "BMSchedulerJobRunCountsEntity"},
+{"group": "entity", "id": 126, "label": "ExampleApplicationEntity"},
+{"group": "assoc", "id": 239, "label": "OwnerOAuth1AccessTokenAssoc"},
+{"group": "assoc", "id": 362, "label": "WopiApiAppTokenAssoc"},
+{"group": "assoc", "id": 288, "label": "TeamOrgAssoc"},
+{"group": "assoc", "id": 176, "label": "HelpVariantKeywordTreeAssoc"},
+{"group": "assoc", "id": 350, "label": "UserUpsellImpressionAssoc"},
+{"group": "entity", "id": 75, "label": "CrashdashReplayEntity"},
+{"group": "assoc", "id": 7, "label": "ActivityUserLikeAssoc"},
+{"group": "assoc", "id": 67, "label": "CollectionRoomProxyAssoc"},
+{"group": "entity", "id": 365, "label": "WopiServerPathColoEntity"},
+{"group": "entity", "id": 95, "label": "ESQueuePartitionEntity"},
+{"group": "assoc", "id": 52, "label": "CRTUserToFileAssoc"},
+{"group": "entity", "id": 298, "label": "TranscodedInfoEntity"},
+{"group": "assoc", "id": 175, "label": "HelpVariantKeywordAssoc"},
+{"group": "assoc", "id": 231, "label": "OmahaHostAssoc"},
+{"group": "entity", "id": 265, "label": "SessionUpsellEntity"},
+{"group": "entity", "id": 61, "label": "CollectionEntity"},
+{"group": "entity", "id": 320, "label": "UserEntity"},
+{"group": "entity", "id": 5, "label": "ActivityEntity"},
+{"group": "assoc", "id": 354, "label": "UserViewedShmodelTokenAssoc"},
+{"group": "entity", "id": 232, "label": "OmahaHostEntity"},
+{"group": "entity", "id": 359, "label": "WebhookListEntity"},
+{"group": "assoc", "id": 153, "label": "FileIDParentChildAssoc"},
+{"group": "assoc", "id": 44, "label": "BlocklistTranscodedInfoAssoc"},
+{"group": "entity", "id": 171, "label": "HelpKeywordEntity"},
+{"group": "assoc", "id": 62, "label": "CollectionEphemeralItemAssoc"},
+{"group": "entity", "id": 132, "label": "ExistingUsersHvaNudgeExperimentAssignmentEntity"},
+{"group": "assoc", "id": 170, "label": "HelpFeedbackAssoc"},
+{"group": "assoc", "id": 100, "label": "EStageUserPhotoAssoc"},
+{"group": "entity", "id": 243, "label": "PasswordEntity"},
+{"group": "entity", "id": 199, "label": "LocalizableImageEntity"},
+{"group": "assoc", "id": 208, "label": "NamespaceDerivedMetadataAssoc"},
+{"group": "entity", "id": 183, "label": "IOSDeviceTokenFeedbackEntity"},
+{"group": "entity", "id": 123, "label": "EventEntity"},
+{"group": "assoc", "id": 178, "label": "HostFeatureAssoc"},
+{"group": "assoc", "id": 90, "label": "DomainTeamDiscoveryAssoc"},
+{"group": "entity", "id": 345, "label": "UserStreamsPrefsEntity"},
+{"group": "entity", "id": 105, "label": "EdgestoreHealthTestKeyedEntity"},
+{"group": "assoc", "id": 253, "label": "ReceivedShmodelTokenUserAssoc"},
+{"group": "entity", "id": 133, "label": "ExplodingEntity"},
+    ];
+
+    // create an array with edges
+    var edges = [
+{"to": 0, "from": 0},
+{"to": 5, "from": 304},
+{"to": 352, "from": 320},
+{"to": 61, "from": 190},
+{"to": 258, "from": 209},
+{"to": 104, "from": 103},
+{"to": 216, "from": 209},
+{"to": 267, "from": 338},
+{"to": 148, "from": 145},
+{"to": 0, "from": 0},
+{"to": 247, "from": 246},
+{"to": 304, "from": 320},
+{"to": 127, "from": 128},
+{"to": 261, "from": 80},
+{"to": 320, "from": 8},
+{"to": 299, "from": 320},
+{"to": 134, "from": 143},
+{"to": 170, "from": 165},
+{"to": 320, "from": 347},
+{"to": 35, "from": 36},
+{"to": 320, "from": 294},
+{"to": 151, "from": 150},
+{"to": 106, "from": 107},
+{"to": 144, "from": 18},
+{"to": 39, "from": 38},
+{"to": 280, "from": 282},
+{"to": 282, "from": 159},
+{"to": 217, "from": 209},
+{"to": 88, "from": 278},
+{"to": 239, "from": 320},
+{"to": 273, "from": 270},
+{"to": 249, "from": 12},
+{"to": 26, "from": 25},
+{"to": 152, "from": 153},
+{"to": 326, "from": 320},
+{"to": 322, "from": 320},
+{"to": 0, "from": 0},
+{"to": 278, "from": 282},
+{"to": 231, "from": 232},
+{"to": 331, "from": 320},
+{"to": 3, "from": 4},
+{"to": 78, "from": 314},
+{"to": 159, "from": 157},
+{"to": 274, "from": 73},
+{"to": 290, "from": 282},
+{"to": 139, "from": 135},
+{"to": 30, "from": 42},
+{"to": 192, "from": 65},
+{"to": 124, "from": 125},
+{"to": 272, "from": 271},
+{"to": 167, "from": 165},
+{"to": 240, "from": 320},
+{"to": 145, "from": 323},
+{"to": 282, "from": 89},
+{"to": 0, "from": 0},
+{"to": 209, "from": 356},
+{"to": 0, "from": 0},
+{"to": 84, "from": 12},
+{"to": 0, "from": 0},
+{"to": 327, "from": 320},
+{"to": 97, "from": 100},
+{"to": 232, "from": 181},
+{"to": 160, "from": 157},
+{"to": 320, "from": 237},
+{"to": 267, "from": 354},
+{"to": 281, "from": 282},
+{"to": 5, "from": 1},
+{"to": 157, "from": 324},
+{"to": 29, "from": 27},
+{"to": 100, "from": 98},
+{"to": 338, "from": 320},
+{"to": 256, "from": 15},
+{"to": 65, "from": 61},
+{"to": 215, "from": 209},
+{"to": 227, "from": 239},
+{"to": 329, "from": 320},
+{"to": 328, "from": 320},
+{"to": 144, "from": 86},
+{"to": 28, "from": 27},
+{"to": 175, "from": 174},
+{"to": 30, "from": 32},
+{"to": 15, "from": 12},
+{"to": 144, "from": 16},
+{"to": 44, "from": 44},
+{"to": 0, "from": 0},
+{"to": 332, "from": 320},
+{"to": 282, "from": 84},
+{"to": 0, "from": 0},
+{"to": 202, "from": 312},
+{"to": 246, "from": 66},
+{"to": 208, "from": 209},
+{"to": 221, "from": 209},
+{"to": 0, "from": 0},
+{"to": 120, "from": 62},
+{"to": 279, "from": 282},
+{"to": 229, "from": 240},
+{"to": 209, "from": 272},
+{"to": 289, "from": 282},
+{"to": 282, "from": 348},
+{"to": 11, "from": 320},
+{"to": 0, "from": 0},
+{"to": 353, "from": 320},
+{"to": 1, "from": 5},
+{"to": 200, "from": 198},
+{"to": 86, "from": 269},
+{"to": 209, "from": 236},
+{"to": 238, "from": 332},
+{"to": 158, "from": 157},
+{"to": 138, "from": 137},
+{"to": 324, "from": 320},
+{"to": 284, "from": 282},
+{"to": 242, "from": 209},
+{"to": 62, "from": 61},
+{"to": 111, "from": 112},
+{"to": 233, "from": 320},
+{"to": 0, "from": 0},
+{"to": 82, "from": 77},
+{"to": 244, "from": 333},
+{"to": 171, "from": 175},
+{"to": 0, "from": 0},
+{"to": 323, "from": 320},
+{"to": 10, "from": 305},
+{"to": 2, "from": 5},
+{"to": 311, "from": 320},
+{"to": 101, "from": 157},
+{"to": 66, "from": 61},
+{"to": 248, "from": 336},
+{"to": 235, "from": 331},
+{"to": 61, "from": 191},
+{"to": 206, "from": 209},
+{"to": 126, "from": 127},
+{"to": 89, "from": 88},
+{"to": 276, "from": 320},
+{"to": 110, "from": 318},
+{"to": 355, "from": 320},
+{"to": 0, "from": 0},
+{"to": 41, "from": 28},
+{"to": 0, "from": 0},
+{"to": 341, "from": 320},
+{"to": 361, "from": 355},
+{"to": 282, "from": 249},
+{"to": 218, "from": 209},
+{"to": 213, "from": 220},
+{"to": 320, "from": 280},
+{"to": 157, "from": 258},
+{"to": 236, "from": 235},
+{"to": 123, "from": 321},
+{"to": 122, "from": 63},
+{"to": 22, "from": 23},
+{"to": 312, "from": 320},
+{"to": 80, "from": 78},
+{"to": 69, "from": 2},
+{"to": 36, "from": 39},
+{"to": 295, "from": 282},
+{"to": 320, "from": 68},
+{"to": 207, "from": 209},
+{"to": 31, "from": 30},
+{"to": 93, "from": 316},
+{"to": 63, "from": 61},
+{"to": 307, "from": 320},
+{"to": 225, "from": 328},
+{"to": 288, "from": 282},
+{"to": 320, "from": 222},
+{"to": 209, "from": 242},
+{"to": 150, "from": 339},
+{"to": 17, "from": 81},
+{"to": 144, "from": 273},
+{"to": 337, "from": 320},
+{"to": 134, "from": 140},
+{"to": 256, "from": 290},
+{"to": 144, "from": 185},
+{"to": 0, "from": 0},
+{"to": 90, "from": 88},
+{"to": 351, "from": 350},
+{"to": 48, "from": 49},
+{"to": 0, "from": 0},
+{"to": 14, "from": 320},
+{"to": 0, "from": 0},
+{"to": 219, "from": 209},
+{"to": 320, "from": 289},
+{"to": 282, "from": 90},
+{"to": 220, "from": 209},
+{"to": 9, "from": 5},
+{"to": 67, "from": 61},
+{"to": 7, "from": 5},
+{"to": 150, "from": 179},
+{"to": 16, "from": 12},
+{"to": 190, "from": 320},
+{"to": 42, "from": 41},
+{"to": 0, "from": 0},
+{"to": 30, "from": 26},
+{"to": 20, "from": 21},
+{"to": 336, "from": 320},
+{"to": 169, "from": 168},
+{"to": 52, "from": 51},
+{"to": 161, "from": 157},
+{"to": 12, "from": 11},
+{"to": 357, "from": 353},
+{"to": 209, "from": 158},
+{"to": 287, "from": 282},
+{"to": 24, "from": 320},
+{"to": 300, "from": 299},
+{"to": 292, "from": 282},
+{"to": 166, "from": 169},
+{"to": 198, "from": 199},
+{"to": 165, "from": 173},
+{"to": 335, "from": 320},
+{"to": 320, "from": 64},
+{"to": 285, "from": 282},
+{"to": 117, "from": 107},
+{"to": 81, "from": 17},
+{"to": 339, "from": 320},
+{"to": 333, "from": 320},
+{"to": 134, "from": 142},
+{"to": 17, "from": 307},
+{"to": 88, "from": 279},
+{"to": 103, "from": 105},
+{"to": 38, "from": 37},
+{"to": 94, "from": 95},
+{"to": 298, "from": 44},
+{"to": 214, "from": 221},
+{"to": 181, "from": 177},
+{"to": 144, "from": 322},
+{"to": 12, "from": 14},
+{"to": 73, "from": 72},
+{"to": 0, "from": 0},
+{"to": 302, "from": 303},
+{"to": 17, "from": 206},
+{"to": 340, "from": 320},
+{"to": 144, "from": 284},
+{"to": 308, "from": 320},
+{"to": 330, "from": 320},
+{"to": 188, "from": 189},
+{"to": 320, "from": 253},
+{"to": 0, "from": 0},
+{"to": 237, "from": 235},
+{"to": 205, "from": 209},
+{"to": 12, "from": 362},
+{"to": 177, "from": 151},
+{"to": 348, "from": 320},
+{"to": 173, "from": 174},
+{"to": 69, "from": 3},
+{"to": 41, "from": 29},
+{"to": 283, "from": 282},
+{"to": 157, "from": 285},
+{"to": 253, "from": 267},
+{"to": 0, "from": 0},
+{"to": 350, "from": 320},
+{"to": 135, "from": 134},
+{"to": 153, "from": 152},
+{"to": 192, "from": 247},
+{"to": 296, "from": 282},
+{"to": 235, "from": 288},
+{"to": 172, "from": 176},
+{"to": 18, "from": 320},
+{"to": 320, "from": 296},
+{"to": 315, "from": 320},
+{"to": 320, "from": 223},
+{"to": 204, "from": 202},
+{"to": 177, "from": 326},
+{"to": 79, "from": 82},
+{"to": 41, "from": 31},
+{"to": 32, "from": 30},
+{"to": 191, "from": 192},
+{"to": 129, "from": 130},
+{"to": 248, "from": 334},
+{"to": 19, "from": 22},
+{"to": 346, "from": 320},
+{"to": 224, "from": 327},
+{"to": 141, "from": 136},
+{"to": 136, "from": 134},
+{"to": 143, "from": 138},
+{"to": 320, "from": 7},
+{"to": 267, "from": 342},
+{"to": 260, "from": 67},
+{"to": 319, "from": 352},
+{"to": 0, "from": 0},
+{"to": 356, "from": 320},
+{"to": 282, "from": 341},
+{"to": 0, "from": 0},
+{"to": 77, "from": 78},
+{"to": 17, "from": 276},
+{"to": 223, "from": 209},
+{"to": 19, "from": 20},
+{"to": 130, "from": 131},
+{"to": 316, "from": 320},
+{"to": 318, "from": 320},
+{"to": 179, "from": 177},
+{"to": 320, "from": 161},
+{"to": 0, "from": 0},
+{"to": 176, "from": 174},
+{"to": 140, "from": 139},
+{"to": 185, "from": 184},
+{"to": 362, "from": 320},
+{"to": 222, "from": 209},
+{"to": 142, "from": 141},
+{"to": 43, "from": 308},
+{"to": 282, "from": 257},
+{"to": 177, "from": 231},
+{"to": 0, "from": 0},
+{"to": 123, "from": 283},
+{"to": 186, "from": 184},
+{"to": 144, "from": 178},
+{"to": 342, "from": 320},
+{"to": 46, "from": 45},
+{"to": 37, "from": 36},
+{"to": 347, "from": 320},
+{"to": 102, "from": 101},
+{"to": 0, "from": 0},
+{"to": 64, "from": 61},
+{"to": 119, "from": 320},
+{"to": 320, "from": 9},
+{"to": 320, "from": 330},
+{"to": 0, "from": 0},
+{"to": 263, "from": 320},
+{"to": 230, "from": 287},
+{"to": 0, "from": 0},
+{"to": 354, "from": 320},
+{"to": 110, "from": 106},
+{"to": 110, "from": 111},
+{"to": 334, "from": 320},
+{"to": 0, "from": 0},
+{"to": 8, "from": 5},
+{"to": 76, "from": 207},
+{"to": 305, "from": 320},
+{"to": 257, "from": 256},
+{"to": 230, "from": 329},
+{"to": 85, "from": 12},
+{"to": 314, "from": 320},
+{"to": 137, "from": 134},
+{"to": 0, "from": 0},
+{"to": 61, "from": 188},
+{"to": 0, "from": 0},
+{"to": 13, "from": 306},
+{"to": 0, "from": 0},
+{"to": 68, "from": 61},
+{"to": 0, "from": 0},
+{"to": 320, "from": 85},
+{"to": 320, "from": 295},
+{"to": 360, "from": 12},
+{"to": 107, "from": 281},
+{"to": 178, "from": 177},
+{"to": 275, "from": 346},
+{"to": 320, "from": 160},
+{"to": 0, "from": 0},
+{"to": 211, "from": 209},
+{"to": 321, "from": 320},
+{"to": 168, "from": 167},
+{"to": 294, "from": 282},
+{"to": 61, "from": 311},
+{"to": 306, "from": 320},
+{"to": 0, "from": 0},
+{"to": 320, "from": 211},
+{"to": 0, "from": 0},
+    ];
+    var current_nodes = $.map(nodes, function (obj) {
+                      return $.extend({}, obj);
+                  });
+    var current_edges = $.map(edges, function (obj) {
+                      return $.extend({}, obj);
+                  });
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+
+
+var options = {
+    autoResize: true,
+  height: '100%',
+  width: '100%',
+
+  edges: {
+      arrows: 'to',
+      color: 'rgba(200,200,200,1)',
+      width: 0.15,
+      smooth: {
+          type: 'continuous'
+      }
+  },
+
+    physics: {
+        centralGravity: 0,
+        stabilization: false,
+        barnesHut: {
+          gravitationalConstant: -10000,
+          springConstant: 0.001,
+          springLength: 200
+        }
+      },
+
+    groups: {
+
+      entity: {
+        shape: 'box',
+        color: "#83C5E1",
+          shadow:true
+      },
+      assoc: {
+        shape: 'dot',
+        color: "#90D4A6",
+          size:10,
+          shadow:true
+      },
+    }
+};
+
+    var nodesDataset = new vis.DataSet(nodes); // these come from WorldCup2014.js
+    var edgesDataset = new vis.DataSet(edges); // these come from WorldCup2014.js
+
+    // provide the data in the vis format
+    var data = {
+        nodes: nodesDataset,
+        edges: edgesDataset
+    };
+    var allNodes = nodesDataset.get({returnType:"Object"});
+    var allEdges = edgesDataset.get({returnType:"Object"});
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+    network.on("click",neighbourhoodHighlight);
+    setTimeout("neighbourhoodHighlight();",15000);
+
+    function neighbourhoodHighlight(params) {
+        // if something is selected:
+        if (params && params.nodes && params.nodes.length > 0) {
+            highlightActive = true;
+            var i, j;
+            var selectedNode = params.nodes[0];
+            var degrees = 2;
+
+            for (var edgeId in allEdges) {
+                if (allEdges[edgeId].from == selectedNode || allEdges[edgeId].to == selectedNode)
+                    allEdges[edgeId].color = 'rgba(200,200,200,1)';
+                else
+                    allEdges[edgeId].color = 'rgba(200,200,200,0.2)';
+
+            }
+
+            // mark all nodes as hard to read.
+            for (var nodeId in allNodes) {
+                allNodes[nodeId].color = 'rgba(200,200,200,0.2)';
+                if (allNodes[nodeId].hiddenLabel === undefined) {
+                    allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+                    allNodes[nodeId].label = undefined;
+                }
+            }
+
+            var connectedNodes = network.getConnectedNodes(selectedNode);
+            var allConnectedNodes = [];
+
+            // get the second degree nodes
+            for (i = 1; i < degrees; i++) {
+                for (j = 0; j < connectedNodes.length; j++) {
+                    allConnectedNodes = allConnectedNodes.concat(network.getConnectedNodes(connectedNodes[j]));
+                }
+            }
+
+            // all second degree nodes get a different color and their label back
+            //for (i = 0; i < allConnectedNodes.length; i++) {
+            //    allNodes[allConnectedNodes[i]].color = 'rgba(150,150,150,0.75)';
+            //    if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+            //        allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
+            //        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+            //    }
+            //}
+
+            // all first degree nodes get their own color and their label back
+            for (i = 0; i < connectedNodes.length; i++) {
+                allNodes[connectedNodes[i]].color = undefined;
+                if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+                    allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
+                    allNodes[connectedNodes[i]].hiddenLabel = undefined;
+                }
+            }
+
+            // the main node gets its own color and its label back.
+            allNodes[selectedNode].color = undefined;
+            if (allNodes[selectedNode].hiddenLabel !== undefined) {
+                allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+                allNodes[selectedNode].hiddenLabel = undefined;
+            }
+
+            connectedNodes.push(selectedNode);
+        }
+        else {
+            // reset all nodes
+            for (var nodeId in allNodes) {
+                allNodes[nodeId].color = undefined;
+                if (allNodes[nodeId].hiddenLabel !== undefined) {
+                    allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+                    allNodes[nodeId].hiddenLabel = undefined;
+                }
+            }
+
+            for (var edgeId in allEdges)
+                allEdges[edgeId].color = 'rgba(200,200,200,1)';
+
+            var connectedNodes = [];
+            for (var nodeId in allNodes) {
+                connectedNodes.push(nodeId)
+            }
+        }
+
+
+        // transform the object into an array
+        var updateNodesArray = [];
+        for (nodeId in allNodes) {
+            if (allNodes.hasOwnProperty(nodeId)) {
+                updateNodesArray.push(allNodes[nodeId]);
+            }
+        }
+
+        // transform the object into an array
+        var updateEdgesArray = [];
+        for (nodeId in allEdges) {
+            if (allEdges.hasOwnProperty(nodeId)) {
+                updateEdgesArray.push(allEdges[nodeId]);
+            }
+        }
+
+        nodesDataset.update(updateNodesArray);
+        edgesDataset.update(updateEdgesArray)
+        network.fit({ nodes:connectedNodes,
+         animation: {duration: 1000, easingFunction: "easeInOutQuad"}
+        })
+        network.stopSimulation()
+
+    }
+
+    $( function() {
+
+    var availableTags = [];
+        for (i = 0; i < nodes.length; i++) {
+            availableTags.push(nodes[i].label)
+        }
+    $( "#tags" ).autocomplete({
+      source: availableTags,
+        select: function( event, ui ) {
+            var selectedLabel = ui.item.label;
+            for (i = 0; i < nodes.length; i++) {
+                if (nodes[i].label == selectedLabel) {
+                    network.selectNodes([nodes[i].id]);
+                    neighbourhoodHighlight({nodes: [nodes[i].id]})
+                }
+            }
+
+
+        }
+    });
+
+  } );
+</script>
+
+</body>
+</html>
